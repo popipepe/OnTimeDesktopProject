@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6076cb9a77aa424e81f814ec2213541e" Name="Diagram1">
+        <EntityTypeShape EntityType="ONTIME_DBModel.CRH" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ONTIME_DBModel.CRH_Opcion" Width="1.5" PointX="5.25" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ONTIME_DBModel.Dia_Reportado" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ONTIME_DBModel.Nivel_Compensacion" Width="1.5" PointX="3.75" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ONTIME_DBModel.Nivel_En_Fecha" Width="1.5" PointX="6" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ONTIME_DBModel.Periodo_Extra" Width="1.5" PointX="5.25" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ONTIME_DBModel.Periodo_Reportado" Width="1.5" PointX="8.25" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ONTIME_DBModel.Persona" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ONTIME_DBModel.Usuario" Width="1.5" PointX="3" PointY="15.75" IsExpanded="true" />
+        <AssociationConnector Association="ONTIME_DBModel.FK__CRH__ID_CRH_Padr__24927208" ManuallyRouted="false" />
+        <AssociationConnector Association="ONTIME_DBModel.FK__CRH__ID_Responsa__239E4DCF" ManuallyRouted="false" />
+        <AssociationConnector Association="ONTIME_DBModel.FK__CRH_Opcio__ID_CR__25869641" ManuallyRouted="false" />
+        <AssociationConnector Association="ONTIME_DBModel.FK__Periodo_E__ID_CR__2B3F6F97" ManuallyRouted="false" />
+        <AssociationConnector Association="ONTIME_DBModel.FK__Periodo_R__ID_CR__29572725" ManuallyRouted="false" />
+        <AssociationConnector Association="ONTIME_DBModel.FK__CRH_Opcio__ID_Pe__267ABA7A" ManuallyRouted="false" />
+        <AssociationConnector Association="ONTIME_DBModel.FK__Dia_Repor__ID_Pe__276EDEB3" ManuallyRouted="false" />
+        <AssociationConnector Association="ONTIME_DBModel.FK__Periodo_R__ID_Di__286302EC" ManuallyRouted="false" />
+        <AssociationConnector Association="ONTIME_DBModel.FK__Nivel_En___ID_Ni__22AA2996" ManuallyRouted="false" />
+        <AssociationConnector Association="ONTIME_DBModel.FK__Nivel_En___ID_Pe__21B6055D" ManuallyRouted="false" />
+        <AssociationConnector Association="ONTIME_DBModel.FK__Periodo_E__ID_Pe__2A4B4B5E" ManuallyRouted="false" />
+        <AssociationConnector Association="ONTIME_DBModel.FK__Persona__ID_Supe__1FCDBCEB" ManuallyRouted="false" />
+        <AssociationConnector Association="ONTIME_DBModel.FK__Usuario__ID_Pers__20C1E124" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

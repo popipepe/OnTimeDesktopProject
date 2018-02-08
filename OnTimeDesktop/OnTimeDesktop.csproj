@@ -44,6 +44,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -67,10 +69,47 @@
     <Compile Include="Dialogs\ThisCorrect.Designer.cs">
       <DependentUpon>ThisCorrect.cs</DependentUpon>
     </Compile>
-    <Compile Include="Entity\dtsOnTimeDatabase.Designer.cs">
+    <Compile Include="Entity\CRH.cs">
+      <DependentUpon>ModelOnTime.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\CRH_Opcion.cs">
+      <DependentUpon>ModelOnTime.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Dia_Reportado.cs">
+      <DependentUpon>ModelOnTime.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\ModelOnTime.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>dtsOnTimeDatabase.xsd</DependentUpon>
+      <DependentUpon>ModelOnTime.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\ModelOnTime.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelOnTime.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\ModelOnTime.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelOnTime.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Nivel_Compensacion.cs">
+      <DependentUpon>ModelOnTime.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Nivel_En_Fecha.cs">
+      <DependentUpon>ModelOnTime.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Periodo_Extra.cs">
+      <DependentUpon>ModelOnTime.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Periodo_Reportado.cs">
+      <DependentUpon>ModelOnTime.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Persona.cs">
+      <DependentUpon>ModelOnTime.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Usuario.cs">
+      <DependentUpon>ModelOnTime.tt</DependentUpon>
     </Compile>
     <Compile Include="Forms\LoginForm.cs">
       <SubType>Form</SubType>
@@ -116,16 +155,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="Entity\dtsOnTimeDatabase.xsc">
-      <DependentUpon>dtsOnTimeDatabase.xsd</DependentUpon>
-    </None>
-    <None Include="Entity\dtsOnTimeDatabase.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>dtsOnTimeDatabase.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Entity\dtsOnTimeDatabase.xss">
-      <DependentUpon>dtsOnTimeDatabase.xsd</DependentUpon>
+    <EntityDeploy Include="Entity\ModelOnTime.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelOnTime.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Entity\ModelOnTime.edmx.diagram">
+      <DependentUpon>ModelOnTime.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -140,6 +175,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Entity\ModelOnTime.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelOnTime.edmx</DependentUpon>
+      <LastGenOutput>ModelOnTime.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Entity\ModelOnTime.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelOnTime.edmx</DependentUpon>
+      <LastGenOutput>ModelOnTime.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

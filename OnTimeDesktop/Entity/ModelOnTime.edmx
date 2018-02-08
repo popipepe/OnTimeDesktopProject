@@ -1,0 +1,770 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ONTIME_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CRH">
+          <Key>
+            <PropertyRef Name="ID_CRH" />
+          </Key>
+          <Property Name="ID_CRH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_CRH_Padre" Type="int" />
+          <Property Name="ID_Responsable" Type="int" />
+          <Property Name="Clave" Type="varchar" MaxLength="200" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="200" />
+          <Property Name="Hoja" Type="bit" />
+        </EntityType>
+        <EntityType Name="CRH_Opcion">
+          <Key>
+            <PropertyRef Name="ID_CRH_Opcion" />
+          </Key>
+          <Property Name="ID_CRH_Opcion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Persona_CO" Type="int" />
+          <Property Name="ID_CRH_CO" Type="int" />
+        </EntityType>
+        <EntityType Name="Dia_Reportado">
+          <Key>
+            <PropertyRef Name="ID_Dia" />
+          </Key>
+          <Property Name="ID_Dia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Persona_DR" Type="int" />
+          <Property Name="Fecha" Type="date" />
+          <Property Name="Time_Zone_Dia" Type="varchar" MaxLength="4" />
+        </EntityType>
+        <EntityType Name="Nivel_Compensacion">
+          <Key>
+            <PropertyRef Name="ID_Nivel" />
+          </Key>
+          <Property Name="ID_Nivel" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre_Nivel" Type="varchar" MaxLength="10" />
+          <Property Name="Factor_De_Conversion" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Compensacion" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Nivel_En_Fecha">
+          <Key>
+            <PropertyRef Name="ID_Nivel_En_Fecha" />
+          </Key>
+          <Property Name="ID_Nivel_En_Fecha" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Persona_N" Type="int" />
+          <Property Name="ID_Nivel_N" Type="int" />
+          <Property Name="Fecha_Inicio" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Periodo_Extra">
+          <Key>
+            <PropertyRef Name="ID_Periodo_Extra" />
+          </Key>
+          <Property Name="ID_Periodo_Extra" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Periodo_PE" Type="int" />
+          <Property Name="ID_CRH_PE" Type="int" />
+          <Property Name="Duracion" Type="int" />
+        </EntityType>
+        <EntityType Name="Periodo_Reportado">
+          <Key>
+            <PropertyRef Name="ID_Periodo" />
+          </Key>
+          <Property Name="ID_Periodo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Dia_PR" Type="int" />
+          <Property Name="ID_CRH_PR" Type="int" />
+          <Property Name="Hora_Inicio" Type="time" Precision="7" />
+          <Property Name="Hora_Fin" Type="time" Precision="7" />
+          <Property Name="Duracion" Type="int" />
+          <Property Name="Timestamp_Autorizado" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="ID_Persona" />
+          </Key>
+          <Property Name="ID_Persona" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Supervisor" Type="int" />
+          <Property Name="ID_Towa" Type="varchar" MaxLength="10" />
+          <Property Name="Nombre" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="ID_Usuario" />
+          </Key>
+          <Property Name="ID_Usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Persona_U" Type="int" />
+          <Property Name="Usuario" Type="varchar" MaxLength="100" />
+          <Property Name="Contraseña" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <Association Name="FK__CRH__ID_CRH_Padr__24927208">
+          <End Role="CRH" Type="Self.CRH" Multiplicity="0..1" />
+          <End Role="CRH1" Type="Self.CRH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CRH">
+              <PropertyRef Name="ID_CRH" />
+            </Principal>
+            <Dependent Role="CRH1">
+              <PropertyRef Name="ID_CRH_Padre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CRH__ID_Responsa__239E4DCF">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
+          <End Role="CRH" Type="Self.CRH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="ID_Persona" />
+            </Principal>
+            <Dependent Role="CRH">
+              <PropertyRef Name="ID_Responsable" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CRH_Opcio__ID_CR__25869641">
+          <End Role="CRH" Type="Self.CRH" Multiplicity="0..1" />
+          <End Role="CRH_Opcion" Type="Self.CRH_Opcion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CRH">
+              <PropertyRef Name="ID_CRH" />
+            </Principal>
+            <Dependent Role="CRH_Opcion">
+              <PropertyRef Name="ID_CRH_CO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CRH_Opcio__ID_Pe__267ABA7A">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
+          <End Role="CRH_Opcion" Type="Self.CRH_Opcion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="ID_Persona" />
+            </Principal>
+            <Dependent Role="CRH_Opcion">
+              <PropertyRef Name="ID_Persona_CO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Dia_Repor__ID_Pe__276EDEB3">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
+          <End Role="Dia_Reportado" Type="Self.Dia_Reportado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="ID_Persona" />
+            </Principal>
+            <Dependent Role="Dia_Reportado">
+              <PropertyRef Name="ID_Persona_DR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Nivel_En___ID_Ni__22AA2996">
+          <End Role="Nivel_Compensacion" Type="Self.Nivel_Compensacion" Multiplicity="0..1" />
+          <End Role="Nivel_En_Fecha" Type="Self.Nivel_En_Fecha" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nivel_Compensacion">
+              <PropertyRef Name="ID_Nivel" />
+            </Principal>
+            <Dependent Role="Nivel_En_Fecha">
+              <PropertyRef Name="ID_Nivel_N" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Nivel_En___ID_Pe__21B6055D">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
+          <End Role="Nivel_En_Fecha" Type="Self.Nivel_En_Fecha" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="ID_Persona" />
+            </Principal>
+            <Dependent Role="Nivel_En_Fecha">
+              <PropertyRef Name="ID_Persona_N" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Periodo_E__ID_CR__2B3F6F97">
+          <End Role="CRH" Type="Self.CRH" Multiplicity="0..1" />
+          <End Role="Periodo_Extra" Type="Self.Periodo_Extra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CRH">
+              <PropertyRef Name="ID_CRH" />
+            </Principal>
+            <Dependent Role="Periodo_Extra">
+              <PropertyRef Name="ID_CRH_PE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Periodo_E__ID_Pe__2A4B4B5E">
+          <End Role="Periodo_Reportado" Type="Self.Periodo_Reportado" Multiplicity="0..1" />
+          <End Role="Periodo_Extra" Type="Self.Periodo_Extra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Periodo_Reportado">
+              <PropertyRef Name="ID_Periodo" />
+            </Principal>
+            <Dependent Role="Periodo_Extra">
+              <PropertyRef Name="ID_Periodo_PE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Periodo_R__ID_CR__29572725">
+          <End Role="CRH" Type="Self.CRH" Multiplicity="0..1" />
+          <End Role="Periodo_Reportado" Type="Self.Periodo_Reportado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CRH">
+              <PropertyRef Name="ID_CRH" />
+            </Principal>
+            <Dependent Role="Periodo_Reportado">
+              <PropertyRef Name="ID_CRH_PR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Periodo_R__ID_Di__286302EC">
+          <End Role="Dia_Reportado" Type="Self.Dia_Reportado" Multiplicity="0..1" />
+          <End Role="Periodo_Reportado" Type="Self.Periodo_Reportado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dia_Reportado">
+              <PropertyRef Name="ID_Dia" />
+            </Principal>
+            <Dependent Role="Periodo_Reportado">
+              <PropertyRef Name="ID_Dia_PR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Persona__ID_Supe__1FCDBCEB">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
+          <End Role="Persona1" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="ID_Persona" />
+            </Principal>
+            <Dependent Role="Persona1">
+              <PropertyRef Name="ID_Supervisor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__ID_Pers__20C1E124">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="ID_Persona" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="ID_Persona_U" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ONTIME_DBModelStoreContainer">
+          <EntitySet Name="CRH" EntityType="Self.CRH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CRH_Opcion" EntityType="Self.CRH_Opcion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dia_Reportado" EntityType="Self.Dia_Reportado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Nivel_Compensacion" EntityType="Self.Nivel_Compensacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Nivel_En_Fecha" EntityType="Self.Nivel_En_Fecha" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Periodo_Extra" EntityType="Self.Periodo_Extra" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Periodo_Reportado" EntityType="Self.Periodo_Reportado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Persona" EntityType="Self.Persona" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__CRH__ID_CRH_Padr__24927208" Association="Self.FK__CRH__ID_CRH_Padr__24927208">
+            <End Role="CRH" EntitySet="CRH" />
+            <End Role="CRH1" EntitySet="CRH" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CRH__ID_Responsa__239E4DCF" Association="Self.FK__CRH__ID_Responsa__239E4DCF">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="CRH" EntitySet="CRH" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CRH_Opcio__ID_CR__25869641" Association="Self.FK__CRH_Opcio__ID_CR__25869641">
+            <End Role="CRH" EntitySet="CRH" />
+            <End Role="CRH_Opcion" EntitySet="CRH_Opcion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CRH_Opcio__ID_Pe__267ABA7A" Association="Self.FK__CRH_Opcio__ID_Pe__267ABA7A">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="CRH_Opcion" EntitySet="CRH_Opcion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Dia_Repor__ID_Pe__276EDEB3" Association="Self.FK__Dia_Repor__ID_Pe__276EDEB3">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Dia_Reportado" EntitySet="Dia_Reportado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Nivel_En___ID_Ni__22AA2996" Association="Self.FK__Nivel_En___ID_Ni__22AA2996">
+            <End Role="Nivel_Compensacion" EntitySet="Nivel_Compensacion" />
+            <End Role="Nivel_En_Fecha" EntitySet="Nivel_En_Fecha" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Nivel_En___ID_Pe__21B6055D" Association="Self.FK__Nivel_En___ID_Pe__21B6055D">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Nivel_En_Fecha" EntitySet="Nivel_En_Fecha" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Periodo_E__ID_CR__2B3F6F97" Association="Self.FK__Periodo_E__ID_CR__2B3F6F97">
+            <End Role="CRH" EntitySet="CRH" />
+            <End Role="Periodo_Extra" EntitySet="Periodo_Extra" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Periodo_E__ID_Pe__2A4B4B5E" Association="Self.FK__Periodo_E__ID_Pe__2A4B4B5E">
+            <End Role="Periodo_Reportado" EntitySet="Periodo_Reportado" />
+            <End Role="Periodo_Extra" EntitySet="Periodo_Extra" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Periodo_R__ID_CR__29572725" Association="Self.FK__Periodo_R__ID_CR__29572725">
+            <End Role="CRH" EntitySet="CRH" />
+            <End Role="Periodo_Reportado" EntitySet="Periodo_Reportado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Periodo_R__ID_Di__286302EC" Association="Self.FK__Periodo_R__ID_Di__286302EC">
+            <End Role="Dia_Reportado" EntitySet="Dia_Reportado" />
+            <End Role="Periodo_Reportado" EntitySet="Periodo_Reportado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Persona__ID_Supe__1FCDBCEB" Association="Self.FK__Persona__ID_Supe__1FCDBCEB">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Persona1" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__ID_Pers__20C1E124" Association="Self.FK__Usuario__ID_Pers__20C1E124">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ONTIME_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CRH">
+          <Key>
+            <PropertyRef Name="ID_CRH" />
+          </Key>
+          <Property Name="ID_CRH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_CRH_Padre" Type="Int32" />
+          <Property Name="ID_Responsable" Type="Int32" />
+          <Property Name="Clave" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Hoja" Type="Boolean" />
+          <NavigationProperty Name="CRH1" Relationship="Self.FK__CRH__ID_CRH_Padr__24927208" FromRole="CRH" ToRole="CRH1" />
+          <NavigationProperty Name="CRH2" Relationship="Self.FK__CRH__ID_CRH_Padr__24927208" FromRole="CRH1" ToRole="CRH" />
+          <NavigationProperty Name="Persona" Relationship="Self.FK__CRH__ID_Responsa__239E4DCF" FromRole="CRH" ToRole="Persona" />
+          <NavigationProperty Name="CRH_Opcion" Relationship="Self.FK__CRH_Opcio__ID_CR__25869641" FromRole="CRH" ToRole="CRH_Opcion" />
+          <NavigationProperty Name="Periodo_Extra" Relationship="Self.FK__Periodo_E__ID_CR__2B3F6F97" FromRole="CRH" ToRole="Periodo_Extra" />
+          <NavigationProperty Name="Periodo_Reportado" Relationship="Self.FK__Periodo_R__ID_CR__29572725" FromRole="CRH" ToRole="Periodo_Reportado" />
+        </EntityType>
+        <EntityType Name="CRH_Opcion">
+          <Key>
+            <PropertyRef Name="ID_CRH_Opcion" />
+          </Key>
+          <Property Name="ID_CRH_Opcion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Persona_CO" Type="Int32" />
+          <Property Name="ID_CRH_CO" Type="Int32" />
+          <NavigationProperty Name="CRH" Relationship="Self.FK__CRH_Opcio__ID_CR__25869641" FromRole="CRH_Opcion" ToRole="CRH" />
+          <NavigationProperty Name="Persona" Relationship="Self.FK__CRH_Opcio__ID_Pe__267ABA7A" FromRole="CRH_Opcion" ToRole="Persona" />
+        </EntityType>
+        <EntityType Name="Dia_Reportado">
+          <Key>
+            <PropertyRef Name="ID_Dia" />
+          </Key>
+          <Property Name="ID_Dia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Persona_DR" Type="Int32" />
+          <Property Name="Fecha" Type="DateTime" Precision="0" />
+          <Property Name="Time_Zone_Dia" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Persona" Relationship="Self.FK__Dia_Repor__ID_Pe__276EDEB3" FromRole="Dia_Reportado" ToRole="Persona" />
+          <NavigationProperty Name="Periodo_Reportado" Relationship="Self.FK__Periodo_R__ID_Di__286302EC" FromRole="Dia_Reportado" ToRole="Periodo_Reportado" />
+        </EntityType>
+        <EntityType Name="Nivel_Compensacion">
+          <Key>
+            <PropertyRef Name="ID_Nivel" />
+          </Key>
+          <Property Name="ID_Nivel" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre_Nivel" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Factor_De_Conversion" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Compensacion" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="Nivel_En_Fecha" Relationship="Self.FK__Nivel_En___ID_Ni__22AA2996" FromRole="Nivel_Compensacion" ToRole="Nivel_En_Fecha" />
+        </EntityType>
+        <EntityType Name="Nivel_En_Fecha">
+          <Key>
+            <PropertyRef Name="ID_Nivel_En_Fecha" />
+          </Key>
+          <Property Name="ID_Nivel_En_Fecha" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Persona_N" Type="Int32" />
+          <Property Name="ID_Nivel_N" Type="Int32" />
+          <Property Name="Fecha_Inicio" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Nivel_Compensacion" Relationship="Self.FK__Nivel_En___ID_Ni__22AA2996" FromRole="Nivel_En_Fecha" ToRole="Nivel_Compensacion" />
+          <NavigationProperty Name="Persona" Relationship="Self.FK__Nivel_En___ID_Pe__21B6055D" FromRole="Nivel_En_Fecha" ToRole="Persona" />
+        </EntityType>
+        <EntityType Name="Periodo_Extra">
+          <Key>
+            <PropertyRef Name="ID_Periodo_Extra" />
+          </Key>
+          <Property Name="ID_Periodo_Extra" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Periodo_PE" Type="Int32" />
+          <Property Name="ID_CRH_PE" Type="Int32" />
+          <Property Name="Duracion" Type="Int32" />
+          <NavigationProperty Name="CRH" Relationship="Self.FK__Periodo_E__ID_CR__2B3F6F97" FromRole="Periodo_Extra" ToRole="CRH" />
+          <NavigationProperty Name="Periodo_Reportado" Relationship="Self.FK__Periodo_E__ID_Pe__2A4B4B5E" FromRole="Periodo_Extra" ToRole="Periodo_Reportado" />
+        </EntityType>
+        <EntityType Name="Periodo_Reportado">
+          <Key>
+            <PropertyRef Name="ID_Periodo" />
+          </Key>
+          <Property Name="ID_Periodo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Dia_PR" Type="Int32" />
+          <Property Name="ID_CRH_PR" Type="Int32" />
+          <Property Name="Hora_Inicio" Type="Time" Precision="7" />
+          <Property Name="Hora_Fin" Type="Time" Precision="7" />
+          <Property Name="Duracion" Type="Int32" />
+          <Property Name="Timestamp_Autorizado" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CRH" Relationship="Self.FK__Periodo_R__ID_CR__29572725" FromRole="Periodo_Reportado" ToRole="CRH" />
+          <NavigationProperty Name="Dia_Reportado" Relationship="Self.FK__Periodo_R__ID_Di__286302EC" FromRole="Periodo_Reportado" ToRole="Dia_Reportado" />
+          <NavigationProperty Name="Periodo_Extra" Relationship="Self.FK__Periodo_E__ID_Pe__2A4B4B5E" FromRole="Periodo_Reportado" ToRole="Periodo_Extra" />
+        </EntityType>
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="ID_Persona" />
+          </Key>
+          <Property Name="ID_Persona" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Supervisor" Type="Int32" />
+          <Property Name="ID_Towa" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CRH" Relationship="Self.FK__CRH__ID_Responsa__239E4DCF" FromRole="Persona" ToRole="CRH" />
+          <NavigationProperty Name="CRH_Opcion" Relationship="Self.FK__CRH_Opcio__ID_Pe__267ABA7A" FromRole="Persona" ToRole="CRH_Opcion" />
+          <NavigationProperty Name="Dia_Reportado" Relationship="Self.FK__Dia_Repor__ID_Pe__276EDEB3" FromRole="Persona" ToRole="Dia_Reportado" />
+          <NavigationProperty Name="Nivel_En_Fecha" Relationship="Self.FK__Nivel_En___ID_Pe__21B6055D" FromRole="Persona" ToRole="Nivel_En_Fecha" />
+          <NavigationProperty Name="Persona1" Relationship="Self.FK__Persona__ID_Supe__1FCDBCEB" FromRole="Persona" ToRole="Persona1" />
+          <NavigationProperty Name="Persona2" Relationship="Self.FK__Persona__ID_Supe__1FCDBCEB" FromRole="Persona1" ToRole="Persona" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK__Usuario__ID_Pers__20C1E124" FromRole="Persona" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="ID_Usuario" />
+          </Key>
+          <Property Name="ID_Usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Persona_U" Type="Int32" />
+          <Property Name="Usuario1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Contraseña" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Persona" Relationship="Self.FK__Usuario__ID_Pers__20C1E124" FromRole="Usuario" ToRole="Persona" />
+        </EntityType>
+        <Association Name="FK__CRH__ID_CRH_Padr__24927208">
+          <End Role="CRH" Type="Self.CRH" Multiplicity="0..1" />
+          <End Role="CRH1" Type="Self.CRH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CRH">
+              <PropertyRef Name="ID_CRH" />
+            </Principal>
+            <Dependent Role="CRH1">
+              <PropertyRef Name="ID_CRH_Padre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CRH__ID_Responsa__239E4DCF">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
+          <End Role="CRH" Type="Self.CRH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="ID_Persona" />
+            </Principal>
+            <Dependent Role="CRH">
+              <PropertyRef Name="ID_Responsable" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CRH_Opcio__ID_CR__25869641">
+          <End Role="CRH" Type="Self.CRH" Multiplicity="0..1" />
+          <End Role="CRH_Opcion" Type="Self.CRH_Opcion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CRH">
+              <PropertyRef Name="ID_CRH" />
+            </Principal>
+            <Dependent Role="CRH_Opcion">
+              <PropertyRef Name="ID_CRH_CO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Periodo_E__ID_CR__2B3F6F97">
+          <End Role="CRH" Type="Self.CRH" Multiplicity="0..1" />
+          <End Role="Periodo_Extra" Type="Self.Periodo_Extra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CRH">
+              <PropertyRef Name="ID_CRH" />
+            </Principal>
+            <Dependent Role="Periodo_Extra">
+              <PropertyRef Name="ID_CRH_PE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Periodo_R__ID_CR__29572725">
+          <End Role="CRH" Type="Self.CRH" Multiplicity="0..1" />
+          <End Role="Periodo_Reportado" Type="Self.Periodo_Reportado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CRH">
+              <PropertyRef Name="ID_CRH" />
+            </Principal>
+            <Dependent Role="Periodo_Reportado">
+              <PropertyRef Name="ID_CRH_PR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CRH_Opcio__ID_Pe__267ABA7A">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
+          <End Role="CRH_Opcion" Type="Self.CRH_Opcion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="ID_Persona" />
+            </Principal>
+            <Dependent Role="CRH_Opcion">
+              <PropertyRef Name="ID_Persona_CO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Dia_Repor__ID_Pe__276EDEB3">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
+          <End Role="Dia_Reportado" Type="Self.Dia_Reportado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="ID_Persona" />
+            </Principal>
+            <Dependent Role="Dia_Reportado">
+              <PropertyRef Name="ID_Persona_DR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Periodo_R__ID_Di__286302EC">
+          <End Role="Dia_Reportado" Type="Self.Dia_Reportado" Multiplicity="0..1" />
+          <End Role="Periodo_Reportado" Type="Self.Periodo_Reportado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dia_Reportado">
+              <PropertyRef Name="ID_Dia" />
+            </Principal>
+            <Dependent Role="Periodo_Reportado">
+              <PropertyRef Name="ID_Dia_PR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Nivel_En___ID_Ni__22AA2996">
+          <End Role="Nivel_Compensacion" Type="Self.Nivel_Compensacion" Multiplicity="0..1" />
+          <End Role="Nivel_En_Fecha" Type="Self.Nivel_En_Fecha" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nivel_Compensacion">
+              <PropertyRef Name="ID_Nivel" />
+            </Principal>
+            <Dependent Role="Nivel_En_Fecha">
+              <PropertyRef Name="ID_Nivel_N" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Nivel_En___ID_Pe__21B6055D">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
+          <End Role="Nivel_En_Fecha" Type="Self.Nivel_En_Fecha" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="ID_Persona" />
+            </Principal>
+            <Dependent Role="Nivel_En_Fecha">
+              <PropertyRef Name="ID_Persona_N" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Periodo_E__ID_Pe__2A4B4B5E">
+          <End Role="Periodo_Reportado" Type="Self.Periodo_Reportado" Multiplicity="0..1" />
+          <End Role="Periodo_Extra" Type="Self.Periodo_Extra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Periodo_Reportado">
+              <PropertyRef Name="ID_Periodo" />
+            </Principal>
+            <Dependent Role="Periodo_Extra">
+              <PropertyRef Name="ID_Periodo_PE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Persona__ID_Supe__1FCDBCEB">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
+          <End Role="Persona1" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="ID_Persona" />
+            </Principal>
+            <Dependent Role="Persona1">
+              <PropertyRef Name="ID_Supervisor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__ID_Pers__20C1E124">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="ID_Persona" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="ID_Persona_U" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ONTIME_DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CRH" EntityType="Self.CRH" />
+          <EntitySet Name="CRH_Opcion" EntityType="Self.CRH_Opcion" />
+          <EntitySet Name="Dia_Reportado" EntityType="Self.Dia_Reportado" />
+          <EntitySet Name="Nivel_Compensacion" EntityType="Self.Nivel_Compensacion" />
+          <EntitySet Name="Nivel_En_Fecha" EntityType="Self.Nivel_En_Fecha" />
+          <EntitySet Name="Periodo_Extra" EntityType="Self.Periodo_Extra" />
+          <EntitySet Name="Periodo_Reportado" EntityType="Self.Periodo_Reportado" />
+          <EntitySet Name="Persona" EntityType="Self.Persona" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <AssociationSet Name="FK__CRH__ID_CRH_Padr__24927208" Association="Self.FK__CRH__ID_CRH_Padr__24927208">
+            <End Role="CRH" EntitySet="CRH" />
+            <End Role="CRH1" EntitySet="CRH" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CRH__ID_Responsa__239E4DCF" Association="Self.FK__CRH__ID_Responsa__239E4DCF">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="CRH" EntitySet="CRH" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CRH_Opcio__ID_CR__25869641" Association="Self.FK__CRH_Opcio__ID_CR__25869641">
+            <End Role="CRH" EntitySet="CRH" />
+            <End Role="CRH_Opcion" EntitySet="CRH_Opcion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Periodo_E__ID_CR__2B3F6F97" Association="Self.FK__Periodo_E__ID_CR__2B3F6F97">
+            <End Role="CRH" EntitySet="CRH" />
+            <End Role="Periodo_Extra" EntitySet="Periodo_Extra" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Periodo_R__ID_CR__29572725" Association="Self.FK__Periodo_R__ID_CR__29572725">
+            <End Role="CRH" EntitySet="CRH" />
+            <End Role="Periodo_Reportado" EntitySet="Periodo_Reportado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CRH_Opcio__ID_Pe__267ABA7A" Association="Self.FK__CRH_Opcio__ID_Pe__267ABA7A">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="CRH_Opcion" EntitySet="CRH_Opcion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Dia_Repor__ID_Pe__276EDEB3" Association="Self.FK__Dia_Repor__ID_Pe__276EDEB3">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Dia_Reportado" EntitySet="Dia_Reportado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Periodo_R__ID_Di__286302EC" Association="Self.FK__Periodo_R__ID_Di__286302EC">
+            <End Role="Dia_Reportado" EntitySet="Dia_Reportado" />
+            <End Role="Periodo_Reportado" EntitySet="Periodo_Reportado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Nivel_En___ID_Ni__22AA2996" Association="Self.FK__Nivel_En___ID_Ni__22AA2996">
+            <End Role="Nivel_Compensacion" EntitySet="Nivel_Compensacion" />
+            <End Role="Nivel_En_Fecha" EntitySet="Nivel_En_Fecha" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Nivel_En___ID_Pe__21B6055D" Association="Self.FK__Nivel_En___ID_Pe__21B6055D">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Nivel_En_Fecha" EntitySet="Nivel_En_Fecha" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Periodo_E__ID_Pe__2A4B4B5E" Association="Self.FK__Periodo_E__ID_Pe__2A4B4B5E">
+            <End Role="Periodo_Reportado" EntitySet="Periodo_Reportado" />
+            <End Role="Periodo_Extra" EntitySet="Periodo_Extra" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Persona__ID_Supe__1FCDBCEB" Association="Self.FK__Persona__ID_Supe__1FCDBCEB">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Persona1" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__ID_Pers__20C1E124" Association="Self.FK__Usuario__ID_Pers__20C1E124">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ONTIME_DBModelStoreContainer" CdmEntityContainer="ONTIME_DBEntities">
+          <EntitySetMapping Name="CRH">
+            <EntityTypeMapping TypeName="ONTIME_DBModel.CRH">
+              <MappingFragment StoreEntitySet="CRH">
+                <ScalarProperty Name="ID_CRH" ColumnName="ID_CRH" />
+                <ScalarProperty Name="ID_CRH_Padre" ColumnName="ID_CRH_Padre" />
+                <ScalarProperty Name="ID_Responsable" ColumnName="ID_Responsable" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Hoja" ColumnName="Hoja" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CRH_Opcion">
+            <EntityTypeMapping TypeName="ONTIME_DBModel.CRH_Opcion">
+              <MappingFragment StoreEntitySet="CRH_Opcion">
+                <ScalarProperty Name="ID_CRH_Opcion" ColumnName="ID_CRH_Opcion" />
+                <ScalarProperty Name="ID_Persona_CO" ColumnName="ID_Persona_CO" />
+                <ScalarProperty Name="ID_CRH_CO" ColumnName="ID_CRH_CO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dia_Reportado">
+            <EntityTypeMapping TypeName="ONTIME_DBModel.Dia_Reportado">
+              <MappingFragment StoreEntitySet="Dia_Reportado">
+                <ScalarProperty Name="ID_Dia" ColumnName="ID_Dia" />
+                <ScalarProperty Name="ID_Persona_DR" ColumnName="ID_Persona_DR" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Time_Zone_Dia" ColumnName="Time_Zone_Dia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Nivel_Compensacion">
+            <EntityTypeMapping TypeName="ONTIME_DBModel.Nivel_Compensacion">
+              <MappingFragment StoreEntitySet="Nivel_Compensacion">
+                <ScalarProperty Name="ID_Nivel" ColumnName="ID_Nivel" />
+                <ScalarProperty Name="Nombre_Nivel" ColumnName="Nombre_Nivel" />
+                <ScalarProperty Name="Factor_De_Conversion" ColumnName="Factor_De_Conversion" />
+                <ScalarProperty Name="Compensacion" ColumnName="Compensacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Nivel_En_Fecha">
+            <EntityTypeMapping TypeName="ONTIME_DBModel.Nivel_En_Fecha">
+              <MappingFragment StoreEntitySet="Nivel_En_Fecha">
+                <ScalarProperty Name="ID_Nivel_En_Fecha" ColumnName="ID_Nivel_En_Fecha" />
+                <ScalarProperty Name="ID_Persona_N" ColumnName="ID_Persona_N" />
+                <ScalarProperty Name="ID_Nivel_N" ColumnName="ID_Nivel_N" />
+                <ScalarProperty Name="Fecha_Inicio" ColumnName="Fecha_Inicio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Periodo_Extra">
+            <EntityTypeMapping TypeName="ONTIME_DBModel.Periodo_Extra">
+              <MappingFragment StoreEntitySet="Periodo_Extra">
+                <ScalarProperty Name="ID_Periodo_Extra" ColumnName="ID_Periodo_Extra" />
+                <ScalarProperty Name="ID_Periodo_PE" ColumnName="ID_Periodo_PE" />
+                <ScalarProperty Name="ID_CRH_PE" ColumnName="ID_CRH_PE" />
+                <ScalarProperty Name="Duracion" ColumnName="Duracion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Periodo_Reportado">
+            <EntityTypeMapping TypeName="ONTIME_DBModel.Periodo_Reportado">
+              <MappingFragment StoreEntitySet="Periodo_Reportado">
+                <ScalarProperty Name="ID_Periodo" ColumnName="ID_Periodo" />
+                <ScalarProperty Name="ID_Dia_PR" ColumnName="ID_Dia_PR" />
+                <ScalarProperty Name="ID_CRH_PR" ColumnName="ID_CRH_PR" />
+                <ScalarProperty Name="Hora_Inicio" ColumnName="Hora_Inicio" />
+                <ScalarProperty Name="Hora_Fin" ColumnName="Hora_Fin" />
+                <ScalarProperty Name="Duracion" ColumnName="Duracion" />
+                <ScalarProperty Name="Timestamp_Autorizado" ColumnName="Timestamp_Autorizado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Persona">
+            <EntityTypeMapping TypeName="ONTIME_DBModel.Persona">
+              <MappingFragment StoreEntitySet="Persona">
+                <ScalarProperty Name="ID_Persona" ColumnName="ID_Persona" />
+                <ScalarProperty Name="ID_Supervisor" ColumnName="ID_Supervisor" />
+                <ScalarProperty Name="ID_Towa" ColumnName="ID_Towa" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="ONTIME_DBModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="ID_Usuario" ColumnName="ID_Usuario" />
+                <ScalarProperty Name="ID_Persona_U" ColumnName="ID_Persona_U" />
+                <ScalarProperty Name="Usuario1" ColumnName="Usuario" />
+                <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

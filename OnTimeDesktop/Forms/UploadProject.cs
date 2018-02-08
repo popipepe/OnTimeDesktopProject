@@ -35,7 +35,7 @@ namespace OnTimeDesktop.Forms
             {
                 strPathToUpload = pathselect.strPath;
                 pathselect.Close();
-                upload(strPathToUpload);
+                uploadToGrid(strPathToUpload);
 
             }
             else
@@ -49,11 +49,10 @@ namespace OnTimeDesktop.Forms
 
         #region Methods
 
-        private void upload(String strPath_I)
+        private void uploadToGrid(String strPath_I)
         {
             String[] strWBSLines = GetWBS(strPath_I);
-
-
+            String[][] arrarrstrWBS = SplitWBS(strWBSLines);
         }
 
         private String[] GetWBS(String strPathToArray_I)
@@ -63,7 +62,7 @@ namespace OnTimeDesktop.Forms
             //                                              //Prosses file into strArray
             String strLine;
             List<String> lststrWBS = new List<String>();
-            using (StreamReader reader = new StreamReader("file.txt"))
+            using (StreamReader reader = new StreamReader(strPathToArray_I))
             {
                 while ((strLine = reader.ReadLine()) != null)
                 {
@@ -84,6 +83,19 @@ namespace OnTimeDesktop.Forms
                 lststrSplitWBS.Add(strLineToSplit.Split(','));
             }
             return SplitedWBS = lststrSplitWBS.ToArray();
+        }
+
+        private void CreateCRH(String[][] arrarrWBS_I, out Entity.OnTimeDataSet.CRHRow[] CRH_O, int intSRows_I,
+                                    int intERows_I, int intColumns_I, Entity.OnTimeDataSet.CRHRow CRHPadre_I)
+        {
+            List<Entity.OnTimeDataSet.CRHRow> lstCRH = new List<Entity.OnTimeDataSet.CRHRow>();
+            for (; intERows_I < arrarrWBS_I.Length; intSRows_I = intSRows_I + 1)
+            {
+                //Entity.OnTimeDataSet.CRHRow CRHRow
+            }
+
+
+                CRH_O = lstCRH.ToArray();
         }
         #endregion
 
