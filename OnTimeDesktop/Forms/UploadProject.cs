@@ -53,6 +53,14 @@ namespace OnTimeDesktop.Forms
         {
             String[] strWBSLines = GetWBS(strPath_I);
             String[][] arrarrstrWBS = SplitWBS(strWBSLines);
+            int StartRowAndColumn = 0;
+            Entity.CRH[] ProcessedCRH = CreateCRH(arrarrstrWBS, StartRowAndColumn, arrarrstrWBS.Length, StartRowAndColumn, null);
+            dataGridView1.DataSource = ProcessedCRH;
+            dataGridView1.Refresh();
+            dataGridView1.Columns[0].Visible = false;
+            dataGridView1.Columns[1].Visible = false;
+            dataGridView1.Columns[2].Visible = false;
+            dataGridView1.Columns[5].Visible = false;
         }
 
         private String[] GetWBS(String strPathToArray_I)
@@ -85,17 +93,54 @@ namespace OnTimeDesktop.Forms
             return SplitedWBS = lststrSplitWBS.ToArray();
         }
 
-        private void CreateCRH(String[][] arrarrWBS_I, out Entity.OnTimeDataSet.CRHRow[] CRH_O, int intSRows_I,
-                                    int intERows_I, int intColumns_I, Entity.OnTimeDataSet.CRHRow CRHPadre_I)
+        private  Entity.CRH[] CreateCRH(String[][] arrarrWBS_I, int intSRows_I, int intERows_I, int intColumns_I, Entity.CRH CRHPadre_I)
         {
-            List<Entity.OnTimeDataSet.CRHRow> lstCRH = new List<Entity.OnTimeDataSet.CRHRow>();
-            for (; intERows_I < arrarrWBS_I.Length; intSRows_I = intSRows_I + 1)
+            Entity.CRH[] CRH_O;
+
+            int intNextLevelEnd;
+            int intCurrentRow = intSRows_I;
+            int intColumn = intColumns_I;
+            int intNextColumn = intColumns_I + 1;
+            List<Entity.CRH> lstCRH = new List<Entity.CRH>();
+            for (; intCurrentRow < intERows_I; intCurrentRow = intCurrentRow + 1)
             {
-                //Entity.OnTimeDataSet.CRHRow CRHRow
+                Entity.CRH CRHRow = new Entity.CRH();
+                
+                //                                          //Process row of current level.
+                CRHRow.Clave = arrarrWBS_I[intCurrentRow][intColumn];
+                CRHRow.Nombre = arrarrWBS_I[intCurrentRow][intColumn + 1];
+                CRHRow.Descripcion = arrarrWBS_I[intCurrentRow][intColumn + 2];
+                CRHRow.ID_Responsable = 1 /*TO-DO int.Parse(arrarrWBS_I[intSRows_I][intColumns_I + 3])*/;
+                lstCRH.Add(CRHRow);
+
+                //                                          //Find next in same level.
+                int intNextBrother = intCurrentRow + 1;
+                while ( 
+                        intNextBrother < arrarrWBS_I.Length &&
+                        (
+                        arrarrWBS_I[intNextBrother][intColumns_I] != "" ||
+                        intColumns_I - 1 == -1 ||
+                        arrarrWBS_I[intNextBrother][intColumns_I - 1] == ""
+                        )
+                       )
+                {
+                    //                                      //If there is no brothers nextend is Lenght - 1
+                    intNextBrother = intNextBrother + 1;
+                }
+
+                //                                          //If next brother is not next process children from current.
+                if (intCurrentRow != intNextBrother)
+                {
+                    intNextLevelEnd = intNextBrother - 1;
+                    Entity.CRH[] CRHToAdd = CreateCRH(arrarrWBS_I, intCurrentRow + 1, intNextLevelEnd, intNextColumn, CRHRow);
+                    foreach(Entity.CRH toAdd in CRHToAdd)
+                    {
+                        lstCRH.Add(toAdd);
+                    }
+                }
             }
 
-
-                CRH_O = lstCRH.ToArray();
+                return CRH_O = lstCRH.ToArray();
         }
         #endregion
 

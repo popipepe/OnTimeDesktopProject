@@ -28,6 +28,7 @@ namespace OnTimeDesktop.Entity
         public string Clave { get; set; }
         public string Descripcion { get; set; }
         public Nullable<bool> Hoja { get; set; }
+        public string Nombre { get; set; }
     
         public virtual ICollection<CRH> CRH1 { get; set; }
         public virtual CRH CRH2 { get; set; }

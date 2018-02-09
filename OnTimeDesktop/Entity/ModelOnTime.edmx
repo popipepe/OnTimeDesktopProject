@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ONTIME_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ONTIME_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CRH">
           <Key>
             <PropertyRef Name="ID_CRH" />
@@ -13,7 +13,8 @@
           <Property Name="ID_CRH_Padre" Type="int" />
           <Property Name="ID_Responsable" Type="int" />
           <Property Name="Clave" Type="varchar" MaxLength="200" />
-          <Property Name="Descripcion" Type="varchar" MaxLength="200" />
+          <Property Name="Nombre" Type="varchar" MaxLength="200" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="255" />
           <Property Name="Hoja" Type="bit" />
         </EntityType>
         <EntityType Name="CRH_Opcion">
@@ -309,8 +310,7 @@
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ONTIME_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -322,7 +322,7 @@
           <Property Name="ID_CRH_Padre" Type="Int32" />
           <Property Name="ID_Responsable" Type="Int32" />
           <Property Name="Clave" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Hoja" Type="Boolean" />
           <NavigationProperty Name="CRH1" Relationship="Self.FK__CRH__ID_CRH_Padr__24927208" FromRole="CRH" ToRole="CRH1" />
           <NavigationProperty Name="CRH2" Relationship="Self.FK__CRH__ID_CRH_Padr__24927208" FromRole="CRH1" ToRole="CRH" />
@@ -330,6 +330,7 @@
           <NavigationProperty Name="CRH_Opcion" Relationship="Self.FK__CRH_Opcio__ID_CR__25869641" FromRole="CRH" ToRole="CRH_Opcion" />
           <NavigationProperty Name="Periodo_Extra" Relationship="Self.FK__Periodo_E__ID_CR__2B3F6F97" FromRole="CRH" ToRole="Periodo_Extra" />
           <NavigationProperty Name="Periodo_Reportado" Relationship="Self.FK__Periodo_R__ID_CR__29572725" FromRole="CRH" ToRole="Periodo_Reportado" />
+          <Property Name="Nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="CRH_Opcion">
           <Key>
@@ -653,6 +654,7 @@
           <EntitySetMapping Name="CRH">
             <EntityTypeMapping TypeName="ONTIME_DBModel.CRH">
               <MappingFragment StoreEntitySet="CRH">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="ID_CRH" ColumnName="ID_CRH" />
                 <ScalarProperty Name="ID_CRH_Padre" ColumnName="ID_CRH_Padre" />
                 <ScalarProperty Name="ID_Responsable" ColumnName="ID_Responsable" />
