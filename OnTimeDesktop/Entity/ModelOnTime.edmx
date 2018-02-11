@@ -12,8 +12,8 @@
           <Property Name="ID_CRH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ID_CRH_Padre" Type="int" />
           <Property Name="ID_Responsable" Type="int" />
-          <Property Name="Clave" Type="varchar" MaxLength="200" />
           <Property Name="Nombre" Type="varchar" MaxLength="200" />
+          <Property Name="Clave" Type="varchar" MaxLength="200" />
           <Property Name="Descripcion" Type="varchar" MaxLength="255" />
           <Property Name="Hoja" Type="bit" />
         </EntityType>
@@ -91,7 +91,7 @@
           <Property Name="Usuario" Type="varchar" MaxLength="100" />
           <Property Name="Contraseña" Type="varchar" MaxLength="200" />
         </EntityType>
-        <Association Name="FK__CRH__ID_CRH_Padr__24927208">
+        <Association Name="FK__CRH__ID_CRH_Padr__4BAC3F29">
           <End Role="CRH" Type="Self.CRH" Multiplicity="0..1" />
           <End Role="CRH1" Type="Self.CRH" Multiplicity="*" />
           <ReferentialConstraint>
@@ -103,7 +103,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CRH__ID_Responsa__239E4DCF">
+        <Association Name="FK__CRH__ID_Responsa__4AB81AF0">
           <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
           <End Role="CRH" Type="Self.CRH" Multiplicity="*" />
           <ReferentialConstraint>
@@ -115,7 +115,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CRH_Opcio__ID_CR__25869641">
+        <Association Name="FK__CRH_Opcio__ID_CR__4CA06362">
           <End Role="CRH" Type="Self.CRH" Multiplicity="0..1" />
           <End Role="CRH_Opcion" Type="Self.CRH_Opcion" Multiplicity="*" />
           <ReferentialConstraint>
@@ -127,7 +127,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CRH_Opcio__ID_Pe__267ABA7A">
+        <Association Name="FK__CRH_Opcio__ID_Pe__4D94879B">
           <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
           <End Role="CRH_Opcion" Type="Self.CRH_Opcion" Multiplicity="*" />
           <ReferentialConstraint>
@@ -139,7 +139,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Dia_Repor__ID_Pe__276EDEB3">
+        <Association Name="FK__Dia_Repor__ID_Pe__4E88ABD4">
           <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
           <End Role="Dia_Reportado" Type="Self.Dia_Reportado" Multiplicity="*" />
           <ReferentialConstraint>
@@ -151,7 +151,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Nivel_En___ID_Ni__22AA2996">
+        <Association Name="FK__Nivel_En___ID_Ni__49C3F6B7">
           <End Role="Nivel_Compensacion" Type="Self.Nivel_Compensacion" Multiplicity="0..1" />
           <End Role="Nivel_En_Fecha" Type="Self.Nivel_En_Fecha" Multiplicity="*" />
           <ReferentialConstraint>
@@ -163,7 +163,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Nivel_En___ID_Pe__21B6055D">
+        <Association Name="FK__Nivel_En___ID_Pe__48CFD27E">
           <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
           <End Role="Nivel_En_Fecha" Type="Self.Nivel_En_Fecha" Multiplicity="*" />
           <ReferentialConstraint>
@@ -175,7 +175,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Periodo_E__ID_CR__2B3F6F97">
+        <Association Name="FK__Periodo_E__ID_CR__52593CB8">
           <End Role="CRH" Type="Self.CRH" Multiplicity="0..1" />
           <End Role="Periodo_Extra" Type="Self.Periodo_Extra" Multiplicity="*" />
           <ReferentialConstraint>
@@ -187,7 +187,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Periodo_E__ID_Pe__2A4B4B5E">
+        <Association Name="FK__Periodo_E__ID_Pe__5165187F">
           <End Role="Periodo_Reportado" Type="Self.Periodo_Reportado" Multiplicity="0..1" />
           <End Role="Periodo_Extra" Type="Self.Periodo_Extra" Multiplicity="*" />
           <ReferentialConstraint>
@@ -199,7 +199,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Periodo_R__ID_CR__29572725">
+        <Association Name="FK__Periodo_R__ID_CR__5070F446">
           <End Role="CRH" Type="Self.CRH" Multiplicity="0..1" />
           <End Role="Periodo_Reportado" Type="Self.Periodo_Reportado" Multiplicity="*" />
           <ReferentialConstraint>
@@ -211,7 +211,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Periodo_R__ID_Di__286302EC">
+        <Association Name="FK__Periodo_R__ID_Di__4F7CD00D">
           <End Role="Dia_Reportado" Type="Self.Dia_Reportado" Multiplicity="0..1" />
           <End Role="Periodo_Reportado" Type="Self.Periodo_Reportado" Multiplicity="*" />
           <ReferentialConstraint>
@@ -223,7 +223,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Persona__ID_Supe__1FCDBCEB">
+        <Association Name="FK__Persona__ID_Supe__46E78A0C">
           <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
           <End Role="Persona1" Type="Self.Persona" Multiplicity="*" />
           <ReferentialConstraint>
@@ -235,7 +235,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuario__ID_Pers__20C1E124">
+        <Association Name="FK__Usuario__ID_Pers__47DBAE45">
           <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
           <ReferentialConstraint>
@@ -257,55 +257,55 @@
           <EntitySet Name="Periodo_Reportado" EntityType="Self.Periodo_Reportado" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Persona" EntityType="Self.Persona" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__CRH__ID_CRH_Padr__24927208" Association="Self.FK__CRH__ID_CRH_Padr__24927208">
+          <AssociationSet Name="FK__CRH__ID_CRH_Padr__4BAC3F29" Association="Self.FK__CRH__ID_CRH_Padr__4BAC3F29">
             <End Role="CRH" EntitySet="CRH" />
             <End Role="CRH1" EntitySet="CRH" />
           </AssociationSet>
-          <AssociationSet Name="FK__CRH__ID_Responsa__239E4DCF" Association="Self.FK__CRH__ID_Responsa__239E4DCF">
+          <AssociationSet Name="FK__CRH__ID_Responsa__4AB81AF0" Association="Self.FK__CRH__ID_Responsa__4AB81AF0">
             <End Role="Persona" EntitySet="Persona" />
             <End Role="CRH" EntitySet="CRH" />
           </AssociationSet>
-          <AssociationSet Name="FK__CRH_Opcio__ID_CR__25869641" Association="Self.FK__CRH_Opcio__ID_CR__25869641">
+          <AssociationSet Name="FK__CRH_Opcio__ID_CR__4CA06362" Association="Self.FK__CRH_Opcio__ID_CR__4CA06362">
             <End Role="CRH" EntitySet="CRH" />
             <End Role="CRH_Opcion" EntitySet="CRH_Opcion" />
           </AssociationSet>
-          <AssociationSet Name="FK__CRH_Opcio__ID_Pe__267ABA7A" Association="Self.FK__CRH_Opcio__ID_Pe__267ABA7A">
+          <AssociationSet Name="FK__CRH_Opcio__ID_Pe__4D94879B" Association="Self.FK__CRH_Opcio__ID_Pe__4D94879B">
             <End Role="Persona" EntitySet="Persona" />
             <End Role="CRH_Opcion" EntitySet="CRH_Opcion" />
           </AssociationSet>
-          <AssociationSet Name="FK__Dia_Repor__ID_Pe__276EDEB3" Association="Self.FK__Dia_Repor__ID_Pe__276EDEB3">
+          <AssociationSet Name="FK__Dia_Repor__ID_Pe__4E88ABD4" Association="Self.FK__Dia_Repor__ID_Pe__4E88ABD4">
             <End Role="Persona" EntitySet="Persona" />
             <End Role="Dia_Reportado" EntitySet="Dia_Reportado" />
           </AssociationSet>
-          <AssociationSet Name="FK__Nivel_En___ID_Ni__22AA2996" Association="Self.FK__Nivel_En___ID_Ni__22AA2996">
+          <AssociationSet Name="FK__Nivel_En___ID_Ni__49C3F6B7" Association="Self.FK__Nivel_En___ID_Ni__49C3F6B7">
             <End Role="Nivel_Compensacion" EntitySet="Nivel_Compensacion" />
             <End Role="Nivel_En_Fecha" EntitySet="Nivel_En_Fecha" />
           </AssociationSet>
-          <AssociationSet Name="FK__Nivel_En___ID_Pe__21B6055D" Association="Self.FK__Nivel_En___ID_Pe__21B6055D">
+          <AssociationSet Name="FK__Nivel_En___ID_Pe__48CFD27E" Association="Self.FK__Nivel_En___ID_Pe__48CFD27E">
             <End Role="Persona" EntitySet="Persona" />
             <End Role="Nivel_En_Fecha" EntitySet="Nivel_En_Fecha" />
           </AssociationSet>
-          <AssociationSet Name="FK__Periodo_E__ID_CR__2B3F6F97" Association="Self.FK__Periodo_E__ID_CR__2B3F6F97">
+          <AssociationSet Name="FK__Periodo_E__ID_CR__52593CB8" Association="Self.FK__Periodo_E__ID_CR__52593CB8">
             <End Role="CRH" EntitySet="CRH" />
             <End Role="Periodo_Extra" EntitySet="Periodo_Extra" />
           </AssociationSet>
-          <AssociationSet Name="FK__Periodo_E__ID_Pe__2A4B4B5E" Association="Self.FK__Periodo_E__ID_Pe__2A4B4B5E">
+          <AssociationSet Name="FK__Periodo_E__ID_Pe__5165187F" Association="Self.FK__Periodo_E__ID_Pe__5165187F">
             <End Role="Periodo_Reportado" EntitySet="Periodo_Reportado" />
             <End Role="Periodo_Extra" EntitySet="Periodo_Extra" />
           </AssociationSet>
-          <AssociationSet Name="FK__Periodo_R__ID_CR__29572725" Association="Self.FK__Periodo_R__ID_CR__29572725">
+          <AssociationSet Name="FK__Periodo_R__ID_CR__5070F446" Association="Self.FK__Periodo_R__ID_CR__5070F446">
             <End Role="CRH" EntitySet="CRH" />
             <End Role="Periodo_Reportado" EntitySet="Periodo_Reportado" />
           </AssociationSet>
-          <AssociationSet Name="FK__Periodo_R__ID_Di__286302EC" Association="Self.FK__Periodo_R__ID_Di__286302EC">
+          <AssociationSet Name="FK__Periodo_R__ID_Di__4F7CD00D" Association="Self.FK__Periodo_R__ID_Di__4F7CD00D">
             <End Role="Dia_Reportado" EntitySet="Dia_Reportado" />
             <End Role="Periodo_Reportado" EntitySet="Periodo_Reportado" />
           </AssociationSet>
-          <AssociationSet Name="FK__Persona__ID_Supe__1FCDBCEB" Association="Self.FK__Persona__ID_Supe__1FCDBCEB">
+          <AssociationSet Name="FK__Persona__ID_Supe__46E78A0C" Association="Self.FK__Persona__ID_Supe__46E78A0C">
             <End Role="Persona" EntitySet="Persona" />
             <End Role="Persona1" EntitySet="Persona" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuario__ID_Pers__20C1E124" Association="Self.FK__Usuario__ID_Pers__20C1E124">
+          <AssociationSet Name="FK__Usuario__ID_Pers__47DBAE45" Association="Self.FK__Usuario__ID_Pers__47DBAE45">
             <End Role="Persona" EntitySet="Persona" />
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
