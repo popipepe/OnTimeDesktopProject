@@ -43,6 +43,7 @@
             this.button6 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
             this.grbProject.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -130,13 +131,14 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.button10);
             this.groupBox2.Controls.Add(this.button7);
             this.groupBox2.Location = new System.Drawing.Point(12, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(236, 169);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Supervisor";
+            this.groupBox2.Text = "Hours";
             // 
             // button7
             // 
@@ -196,6 +198,15 @@
             this.button9.Text = "Level To Person";
             this.button9.UseVisualStyleBackColor = true;
             // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(134, 41);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(81, 46);
+            this.button10.TabIndex = 1;
+            this.button10.Text = "View My Hours";
+            this.button10.UseVisualStyleBackColor = true;
+            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -232,5 +243,6 @@
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button10;
     }
 }
