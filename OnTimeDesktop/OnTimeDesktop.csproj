@@ -123,6 +123,36 @@
     <Compile Include="Forms\MainMenu.Designer.cs">
       <DependentUpon>MainMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ViewPeople.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ViewPeople.Designer.cs">
+      <DependentUpon>ViewPeople.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ApproveHours.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ApproveHours.Designer.cs">
+      <DependentUpon>ApproveHours.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ViewMyHours.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ViewMyHours.Designer.cs">
+      <DependentUpon>ViewMyHours.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ViewActivities.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ViewActivities.Designer.cs">
+      <DependentUpon>ViewActivities.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UploadPerson.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UploadPerson.Designer.cs">
+      <DependentUpon>UploadPerson.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\UploadProject.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,8 +173,17 @@
     <EmbeddedResource Include="Forms\MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UploadPerson.resx">
+      <DependentUpon>UploadPerson.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\UploadProject.resx">
       <DependentUpon>UploadProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ViewActivities.resx">
+      <DependentUpon>ViewActivities.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ViewPeople.resx">
+      <DependentUpon>ViewPeople.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

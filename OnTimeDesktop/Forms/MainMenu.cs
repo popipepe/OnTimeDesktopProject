@@ -32,7 +32,30 @@ namespace OnTimeDesktop.Forms
             Upload.Focus();
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            UploadPerson Person = new UploadPerson();
+            Person.Show();
+            Person.Focus();
+        }
+
         #endregion
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            ViewPeople people = new ViewPeople();
+            people.Show();
+            people.Focus();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            ViewActivities activities = new ViewActivities();
+            activities.Show();
+            activities.Focus();
+        }
+
+
 
         #region Methods
 
